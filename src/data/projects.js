@@ -1,0 +1,58 @@
+const projects = [
+  {
+    id: 1,
+    title: "SIPRESMA",
+    description: "Sistem Informasi Presensi Mahasiswa berbasis web dengan fitur real-time tracking dan laporan otomatis.",
+    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=400&fit=crop",
+    tech: ["Laravel", "Bootstrap", "MySQL"],
+    github: "https://github.com",
+    demo: "https://example.com",
+  },
+  {
+    id: 2,
+    title: "PRATAMA System",
+    description: "Sistem manajemen aset dan inventaris untuk UPA TIK ISI menggunakan arsitektur MVC.",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop",
+    tech: ["Laravel", "Tailwind CSS", "MySQL"],
+    github: "https://github.com",
+    demo: "https://example.com",
+  },
+  {
+    id: 3,
+    title: "Website Desa",
+    description: "Portal informasi desa dengan fitur berita, agenda, dan layanan masyarakat terintegrasi.",
+    image: "https://images.unsplash.com/photo-1563986768609-322da13575f2?w=600&h=400&fit=crop",
+    tech: ["React", "Laravel", "MySQL"],
+    github: "https://github.com",
+    demo: "https://example.com",
+  },
+  {
+    id: 4,
+    title: "E-Commerce App",
+    description: "Aplikasi toko online dengan sistem keranjang, checkout, dan manajemen produk.",
+    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop",
+    tech: ["React", "Node.js", "MongoDB"],
+    github: "https://github.com",
+    demo: "https://example.com",
+  },
+  {
+    id: 5,
+    title: "Dashboard Analytics",
+    description: "Dashboard interaktif untuk visualisasi data penjualan dengan chart dan grafik real-time.",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop",
+    tech: ["React", "Chart.js", "Tailwind CSS"],
+    github: "https://github.com",
+    demo: "https://example.com",
+  },
+  {
+    id: 6,
+    title: "API RESTful Service",
+    description: "Backend API untuk aplikasi mobile dengan autentikasi JWT dan dokumentasi Swagger.",
+    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&h=400&fit=crop",
+    tech: ["Laravel", "PostgreSQL", "Docker"],
+    github: "https://github.com",
+    demo: "https://example.com",
+  },
+]
+
+export default projects
