@@ -10,7 +10,7 @@ const stats = [
 
 export default function About() {
   return (
-    <section id="about" className="py-20 bg-white dark:bg-slate-800">
+    <section id="about" className="py-20 scroll-mt-16 bg-white dark:bg-slate-800">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -34,8 +34,8 @@ export default function About() {
             <div className="w-56 h-56 sm:w-64 sm:h-64 rounded-2xl bg-gradient-to-br from-primary to-secondary p-1 shadow-xl">
               <div className="w-full h-full rounded-2xl bg-slate-100 dark:bg-slate-700 overflow-hidden">
                 <img
-                  src="/images/profile.jpg"
-                  alt="Muhammad Naufal"
+                  src="/images/profile.png"
+                  alt="Muhammad Naufal" loading="lazy"
                   className="w-full h-full object-cover"
                   onError={(e) => {
                     e.target.style.display = "none"

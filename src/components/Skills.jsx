@@ -5,7 +5,7 @@ export default function Skills() {
   const categories = [...new Set(skills.map((s) => s.category))]
 
   return (
-    <section id="skills" className="py-20 bg-slate-50 dark:bg-slate-900">
+    <section id="skills" className="py-20 scroll-mt-16 bg-slate-50 dark:bg-slate-900">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -45,7 +45,14 @@ export default function Skills() {
                           {skill.level}%
                         </span>
                       </div>
-                      <div className="w-full h-2.5 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
+                      <div
+                        className="w-full h-2.5 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden"
+                        role="progressbar"
+                        aria-valuenow={skill.level}
+                        aria-valuemin="0"
+                        aria-valuemax="100"
+                        aria-label={`${skill.name}: ${skill.level}%`}
+                      >
                         <motion.div
                           initial={{ width: 0 }}
                           whileInView={{ width: `${skill.level}%` }}

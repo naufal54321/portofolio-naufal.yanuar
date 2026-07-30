@@ -7,12 +7,12 @@ const contacts = [
   { icon: FaWhatsapp, label: "WhatsApp", value: "+62 857-2773-2041", href: "https://wa.me/6285727732041", color: "hover:bg-green-100 dark:hover:bg-green-900/30" },
   { icon: FaInstagram, label: "Instagram", value: "@naufal.ynr", href: "https://instagram.com/naufal.ynr", color: "hover:bg-pink-100 dark:hover:bg-pink-900/30" },
   { icon: FaGithub, label: "GitHub", value: "muhammadnaufal", href: "https://github.com/muhammadnaufal", color: "hover:bg-slate-100 dark:hover:bg-slate-700" },
-  { icon: FaLinkedin, label: "LinkedIn", value: "Muhammad Naufal Yanuar", href: "https://github.com/naufal54321", color: "hover:bg-blue-100 dark:hover:bg-blue-900/30" },
+  { icon: FaLinkedin, label: "LinkedIn", value: "Muhammad Naufal Yanuar", href: "https://www.linkedin.com/in/muhammad-naufal-yanuar-069908373", color: "hover:bg-blue-100 dark:hover:bg-blue-900/30" },
 ]
 
 export default function Contact() {
   return (
-    <section id="contact" className="py-20 bg-white dark:bg-slate-800">
+    <section id="contact" className="py-20 scroll-mt-16 bg-white dark:bg-slate-800">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 50 }}

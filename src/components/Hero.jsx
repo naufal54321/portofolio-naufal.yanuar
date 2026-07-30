@@ -112,6 +112,7 @@ export default function Hero() {
                 <img
                   src="/images/profile.png"
                   alt="Muhammad Naufal Yanuar"
+                  loading="lazy"
                   className="w-full h-full object-cover"
                   onError={(e) => {
                     e.target.style.display = "none"

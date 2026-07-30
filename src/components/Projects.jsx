@@ -4,7 +4,7 @@ import projects from "../data/projects"
 
 export default function Projects() {
   return (
-    <section id="projects" className="py-20 bg-white dark:bg-slate-800">
+    <section id="projects" className="py-20 scroll-mt-16 bg-white dark:bg-slate-800">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -32,6 +32,7 @@ export default function Projects() {
                 <img
                   src={project.image}
                   alt={project.title}
+                  loading="lazy"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4 gap-3">
@@ -43,14 +44,16 @@ export default function Projects() {
                   >
                     <HiCode size={20} />
                   </a>
-                  <a
-                    href={project.demo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-2 bg-white/90 rounded-full text-slate-800 hover:bg-white transition-colors"
-                  >
-                    <HiExternalLink size={20} />
-                  </a>
+                  {project.demo && (
+                    <a
+                      href={project.demo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-2 bg-white/90 rounded-full text-slate-800 hover:bg-white transition-colors"
+                    >
+                      <HiExternalLink size={20} />
+                    </a>
+                  )}
                 </div>
               </div>
               <div className="p-5">
