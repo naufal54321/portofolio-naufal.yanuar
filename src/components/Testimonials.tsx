@@ -6,6 +6,8 @@ import testimonials from "../data/testimonials"
 export default function Testimonials() {
   const [active, setActive] = useState(0)
 
+  if (testimonials.length === 0) return null
+
   const prev = () => setActive((a) => (a === 0 ? testimonials.length - 1 : a - 1))
   const next = () => setActive((a) => (a === testimonials.length - 1 ? 0 : a + 1))
 
