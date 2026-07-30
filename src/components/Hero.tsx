@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import { HiArrowRight, HiDownload } from "react-icons/hi"
+import TechStack from "./TechStack"
 
 export default function Hero() {
   const [text, setText] = useState("")
@@ -97,6 +98,7 @@ export default function Hero() {
               Download CV
               <HiDownload />
             </a>
+            <TechStack />
           </motion.div>
         </motion.div>
 
@@ -115,8 +117,10 @@ export default function Hero() {
                   loading="lazy"
                   className="w-full h-full object-cover"
                   onError={(e) => {
-                    e.target.style.display = "none"
-                    e.target.nextSibling.style.display = "flex"
+                    const target = e.target as HTMLImageElement
+                    target.style.display = "none"
+                    const fallback = target.nextElementSibling as HTMLElement
+                    if (fallback) fallback.style.display = "flex"
                   }}
                 />
                 <div className="hidden w-full h-full items-center justify-center text-6xl bg-slate-200 dark:bg-slate-700">

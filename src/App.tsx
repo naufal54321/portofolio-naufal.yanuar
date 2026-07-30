@@ -6,10 +6,11 @@ import Skills from "./components/Skills"
 import Projects from "./components/Projects"
 import Experience from "./components/Experience"
 import Contact from "./components/Contact"
+import Testimonials from "./components/Testimonials"
 import Footer from "./components/Footer"
 
 function App() {
-  const [darkMode, setDarkMode] = useState(() => {
+  const [darkMode, setDarkMode] = useState<boolean>(() => {
     const saved = localStorage.getItem("darkMode")
     return saved ? JSON.parse(saved) : false
   })
@@ -33,6 +34,7 @@ function App() {
       <Skills />
       <Projects />
       <Experience />
+      <Testimonials />
       <Contact />
       <Footer />
     </>

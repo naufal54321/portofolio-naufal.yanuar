@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { HiMenu, HiX } from "react-icons/hi"
 import { FiSun, FiMoon } from "react-icons/fi"
+import type { NavbarProps } from "../types"
 
 const navLinks = [
   { name: "Home", href: "#home" },
@@ -12,7 +13,7 @@ const navLinks = [
   { name: "Contact", href: "#contact" },
 ]
 
-export default function Navbar({ darkMode, toggleDarkMode }) {
+export default function Navbar({ darkMode, toggleDarkMode }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
 

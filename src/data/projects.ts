@@ -1,4 +1,6 @@
-const projects = [
+import type { Project } from "../types"
+
+const projects: Project[] = [
   {
     id: 1,
     title: "PRATAMA - Prestasi dan Talenta Mahasiswa",
@@ -92,6 +94,6 @@ const projects = [
       "Responsive",
     ],
   },
-];
+]
 
-export default projects;
+export default projects

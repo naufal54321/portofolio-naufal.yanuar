@@ -49,8 +49,8 @@ export default function Skills() {
                         className="w-full h-2.5 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden"
                         role="progressbar"
                         aria-valuenow={skill.level}
-                        aria-valuemin="0"
-                        aria-valuemax="100"
+                        aria-valuemin={0}
+                        aria-valuemax={100}
                         aria-label={`${skill.name}: ${skill.level}%`}
                       >
                         <motion.div

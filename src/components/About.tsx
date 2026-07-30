@@ -1,7 +1,14 @@
 import { motion } from "framer-motion"
 import { HiCode, HiGlobe, HiAcademicCap, HiHeart } from "react-icons/hi"
+import type { IconType } from "react-icons"
 
-const stats = [
+interface Stat {
+  icon: IconType
+  value: string
+  label: string
+}
+
+const stats: Stat[] = [
   { icon: HiCode, value: "20+", label: "Project" },
   { icon: HiGlobe, value: "5+", label: "Website" },
   { icon: HiAcademicCap, value: "3+", label: "Tahun Belajar" },
@@ -35,11 +42,14 @@ export default function About() {
               <div className="w-full h-full rounded-2xl bg-slate-100 dark:bg-slate-700 overflow-hidden">
                 <img
                   src="/images/profile.png"
-                  alt="Muhammad Naufal" loading="lazy"
+                  alt="Muhammad Naufal"
+                  loading="lazy"
                   className="w-full h-full object-cover"
                   onError={(e) => {
-                    e.target.style.display = "none"
-                    e.target.nextSibling.style.display = "flex"
+                    const target = e.target as HTMLImageElement
+                    target.style.display = "none"
+                    const fallback = target.nextElementSibling as HTMLElement
+                    if (fallback) fallback.style.display = "flex"
                   }}
                 />
                 <div className="hidden w-full h-full items-center justify-center text-5xl bg-slate-100 dark:bg-slate-700">

@@ -1,4 +1,6 @@
-const skills = [
+import type { Skill } from "../types"
+
+const skills: Skill[] = [
   { name: "Laravel", level: 95, category: "Backend" },
   { name: "PHP", level: 90, category: "Backend" },
   { name: "MySQL", level: 88, category: "Database" },

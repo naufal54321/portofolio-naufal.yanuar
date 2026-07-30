@@ -7,6 +7,7 @@
   --color-primary-dark: #15803d;
   --color-secondary: #22c55e;
   --color-accent: #84cc16;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
 }
 
 ::-webkit-scrollbar {
