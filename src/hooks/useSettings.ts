@@ -32,7 +32,7 @@ export function useSettings() {
 
   const update = async (key: string, value: string) => {
     if (!supabase) return { error: "Supabase not configured" }
-    const { error } = await supabase.from("settings").upsert({ key, value })
+    const { error } = await supabase.from("settings").upsert({ key, value }, { onConflict: "key" })
     if (error) {
       console.warn("[Portfolio] Failed to update setting:", error.message)
       return { error: error.message }
@@ -43,7 +43,7 @@ export function useSettings() {
 
   const updateMany = async (items: { key: string; value: string }[]) => {
     if (!supabase) return { error: "Supabase not configured" }
-    const { error } = await supabase.from("settings").upsert(items)
+    const { error } = await supabase.from("settings").upsert(items, { onConflict: "key" })
     if (error) {
       console.warn("[Portfolio] Failed to update settings:", error.message)
       return { error: error.message }
