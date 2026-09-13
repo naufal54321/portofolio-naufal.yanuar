@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react"
+import { render, screen, waitFor } from "@testing-library/react"
 import Hero from "../components/Hero"
 
 describe("Hero", () => {
@@ -8,8 +8,10 @@ describe("Hero", () => {
     expect(screen.getByText(/Lihat Project/i)).toBeInTheDocument()
   })
 
-  it("renders typing effect text", () => {
+  it("renders typing effect text", async () => {
     render(<Hero />)
-    expect(screen.getByText("Full Stack Web Developer".charAt(0))).toBeInTheDocument()
+    await waitFor(() => {
+      expect(screen.getByText(/Full Stack Web Developer/)).toBeInTheDocument()
+    }, { timeout: 5000 })
   })
 })
