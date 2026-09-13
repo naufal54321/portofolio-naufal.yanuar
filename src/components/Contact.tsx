@@ -3,6 +3,7 @@ import { HiMail } from "react-icons/hi"
 import { FaWhatsapp, FaInstagram, FaGithub, FaLinkedin } from "react-icons/fa"
 import type { IconType } from "react-icons"
 import ContactForm from "./ContactForm"
+import { useSettings } from "../hooks/useSettings"
 
 interface ContactItem {
   icon: IconType
@@ -12,15 +13,17 @@ interface ContactItem {
   color: string
 }
 
-const contacts: ContactItem[] = [
-  { icon: HiMail, label: "Email", value: "naufalm220@gmail.com", href: "mailto:naufalm220@gmail.com", color: "hover:bg-red-100 dark:hover:bg-red-900/30" },
-  { icon: FaWhatsapp, label: "WhatsApp", value: "+62 857-2773-2041", href: "https://wa.me/6285727732041", color: "hover:bg-green-100 dark:hover:bg-green-900/30" },
-  { icon: FaInstagram, label: "Instagram", value: "@naufal.ynr", href: "https://instagram.com/naufal.ynr", color: "hover:bg-pink-100 dark:hover:bg-pink-900/30" },
-  { icon: FaGithub, label: "GitHub", value: "naufal54321", href: "https://github.com/naufal54321", color: "hover:bg-slate-100 dark:hover:bg-slate-700" },
-  { icon: FaLinkedin, label: "LinkedIn", value: "Muhammad Naufal Yanuar", href: "https://www.linkedin.com/in/muhammad-naufal-yanuar-069908373", color: "hover:bg-blue-100 dark:hover:bg-blue-900/30" },
-]
-
 export default function Contact() {
+  const { data: s } = useSettings()
+
+  const contacts: ContactItem[] = [
+    { icon: HiMail, label: "Email", value: s.contact_email || "naufalm220@gmail.com", href: `mailto:${s.contact_email || "naufalm220@gmail.com"}`, color: "hover:bg-red-100 dark:hover:bg-red-900/30" },
+    { icon: FaWhatsapp, label: "WhatsApp", value: s.contact_whatsapp || "+62 857-2773-2041", href: s.contact_whatsapp_link || "https://wa.me/6285727732041", color: "hover:bg-green-100 dark:hover:bg-green-900/30" },
+    { icon: FaInstagram, label: "Instagram", value: s.contact_instagram || "@naufal.ynr", href: s.contact_instagram_link || "https://instagram.com/naufal.ynr", color: "hover:bg-pink-100 dark:hover:bg-pink-900/30" },
+    { icon: FaGithub, label: "GitHub", value: s.contact_github || "naufal54321", href: s.contact_github_link || "https://github.com/naufal54321", color: "hover:bg-slate-100 dark:hover:bg-slate-700" },
+    { icon: FaLinkedin, label: "LinkedIn", value: s.contact_linkedin || "Muhammad Naufal Yanuar", href: s.contact_linkedin_link || "https://www.linkedin.com/in/muhammad-naufal-yanuar-069908373", color: "hover:bg-blue-100 dark:hover:bg-blue-900/30" },
+  ]
+
   return (
     <section id="contact" className="py-20 scroll-mt-16 bg-white dark:bg-slate-800">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">

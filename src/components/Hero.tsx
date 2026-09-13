@@ -2,10 +2,12 @@ import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import { HiArrowRight, HiDownload } from "react-icons/hi"
 import TechStack from "./TechStack"
+import { useSettings } from "../hooks/useSettings"
 
 export default function Hero() {
+  const { data: settings } = useSettings()
   const [text, setText] = useState("")
-  const fullText = "Full Stack Web Developer"
+  const fullText = settings.hero_title || "Full Stack Web Developer"
   const [index, setIndex] = useState(0)
 
   useEffect(() => {
@@ -16,7 +18,7 @@ export default function Hero() {
       }, 100)
       return () => clearTimeout(timeout)
     }
-  }, [index])
+  }, [index, fullText])
 
   return (
     <section
@@ -58,7 +60,7 @@ export default function Hero() {
             className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-800 dark:text-white mb-4"
           >
             Saya{" "}
-            <span className="text-primary">Muhammad Naufal Yanuar</span>
+            <span className="text-primary">{settings.hero_name || "Muhammad Naufal Yanuar"}</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0 }}
@@ -75,7 +77,7 @@ export default function Hero() {
             transition={{ delay: 0.7 }}
             className="text-slate-500 dark:text-slate-400 mb-8 max-w-lg mx-auto md:mx-0"
           >
-            Saya mengembangkan website modern menggunakan Laravel, React, dan Tailwind CSS.
+            {settings.hero_description || "Saya mengembangkan website modern menggunakan Laravel, React, dan Tailwind CSS."}
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -112,8 +114,8 @@ export default function Hero() {
             <div className="w-64 h-64 sm:w-80 sm:h-80 rounded-full bg-gradient-to-br from-primary to-secondary p-1">
               <div className="w-full h-full rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden">
                 <img
-                  src="/images/profile.png"
-                  alt="Muhammad Naufal Yanuar"
+                  src={settings.profile_image || "/images/profile.png"}
+                  alt={settings.hero_name || "Muhammad Naufal Yanuar"}
                   loading="lazy"
                   className="w-full h-full object-cover"
                   onError={(e) => {

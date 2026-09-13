@@ -1,8 +1,12 @@
 import { motion } from "framer-motion"
-import skills from "../data/skills"
+import { useSkills } from "../hooks/useSkills"
 
 export default function Skills() {
+  const { data: skills, loading } = useSkills()
   const categories = [...new Set(skills.map((s) => s.category))]
+
+  if (loading) return null
+  if (skills.length === 0) return null
 
   return (
     <section id="skills" className="py-20 scroll-mt-16 bg-slate-50 dark:bg-slate-900">
@@ -36,7 +40,7 @@ export default function Skills() {
                 {skills
                   .filter((s) => s.category === category)
                   .map((skill, i) => (
-                    <div key={skill.name}>
+                    <div key={skill.id}>
                       <div className="flex justify-between text-sm mb-2">
                         <span className="font-medium text-slate-700 dark:text-slate-300">
                           {skill.name}

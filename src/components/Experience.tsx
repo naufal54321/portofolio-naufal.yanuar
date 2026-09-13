@@ -1,7 +1,12 @@
 import { motion } from "framer-motion"
-import experiences from "../data/experience"
+import { useExperiences } from "../hooks/useExperiences"
 
 export default function Experience() {
+  const { data: experiences, loading } = useExperiences()
+
+  if (loading) return null
+  if (experiences.length === 0) return null
+
   return (
     <section id="experience" className="py-20 scroll-mt-16 bg-slate-50 dark:bg-slate-900">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">

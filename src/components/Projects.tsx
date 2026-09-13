@@ -1,20 +1,26 @@
 import { useState, useMemo } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { HiExternalLink, HiCode } from "react-icons/hi"
-import projects from "../data/projects"
-
-const allTags = [...new Set(projects.flatMap((p) => p.tech))].sort()
+import { useProjects } from "../hooks/useProjects"
 
 export default function Projects() {
+  const { data: projects, loading } = useProjects()
   const [activeTag, setActiveTag] = useState("Semua")
+
+  const allTags = useMemo(() => {
+    return [...new Set(projects.flatMap((p) => p.tech))].sort()
+  }, [projects])
 
   const filtered = useMemo(
     () =>
       activeTag === "Semua"
         ? projects
         : projects.filter((p) => p.tech.includes(activeTag)),
-    [activeTag]
+    [activeTag, projects]
   )
+
+  if (loading) return null
+  if (projects.length === 0) return null
 
   return (
     <section id="projects" className="py-20 scroll-mt-16 bg-white dark:bg-slate-800">

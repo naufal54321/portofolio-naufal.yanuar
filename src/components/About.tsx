@@ -1,6 +1,7 @@
 import { motion } from "framer-motion"
 import { HiCode, HiGlobe, HiAcademicCap, HiHeart } from "react-icons/hi"
 import type { IconType } from "react-icons"
+import { useSettings } from "../hooks/useSettings"
 
 interface Stat {
   icon: IconType
@@ -8,14 +9,16 @@ interface Stat {
   label: string
 }
 
-const stats: Stat[] = [
-  { icon: HiCode, value: "20+", label: "Project" },
-  { icon: HiGlobe, value: "5+", label: "Website" },
-  { icon: HiAcademicCap, value: "3+", label: "Tahun Belajar" },
-  { icon: HiHeart, value: "100%", label: "Semangat" },
-]
-
 export default function About() {
+  const { data: settings } = useSettings()
+
+  const stats: Stat[] = [
+    { icon: HiCode, value: settings.stat_projects || "20+", label: "Project" },
+    { icon: HiGlobe, value: settings.stat_websites || "5+", label: "Website" },
+    { icon: HiAcademicCap, value: settings.stat_years || "3+", label: "Tahun Belajar" },
+    { icon: HiHeart, value: settings.stat_spirit || "100%", label: "Semangat" },
+  ]
+
   return (
     <section id="about" className="py-20 scroll-mt-16 bg-white dark:bg-slate-800">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
@@ -41,7 +44,7 @@ export default function About() {
             <div className="w-56 h-56 sm:w-64 sm:h-64 rounded-2xl bg-gradient-to-br from-primary to-secondary p-1 shadow-xl">
               <div className="w-full h-full rounded-2xl bg-slate-100 dark:bg-slate-700 overflow-hidden">
                 <img
-                  src="/images/profile.png"
+                  src={settings.profile_image || "/images/profile.png"}
                   alt="Muhammad Naufal"
                   loading="lazy"
                   className="w-full h-full object-cover"
@@ -66,10 +69,10 @@ export default function About() {
             className="flex-1"
           >
             <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
-              Mahasiswa Informatika yang memiliki minat besar dalam pengembangan aplikasi web modern.
+              {settings.about_bio_1 || "Mahasiswa Informatika yang memiliki minat besar dalam pengembangan aplikasi web modern."}
             </p>
             <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
-              Berpengalaman membangun aplikasi menggunakan Laravel, React, MySQL, Tailwind CSS, Bootstrap, dan JavaScript.
+              {settings.about_bio_2 || "Berpengalaman membangun aplikasi menggunakan Laravel, React, MySQL, Tailwind CSS, Bootstrap, dan JavaScript."}
             </p>
           </motion.div>
         </div>
