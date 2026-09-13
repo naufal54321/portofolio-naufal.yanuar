@@ -7,28 +7,37 @@ export function useExperiences() {
   const [loading, setLoading] = useState(true)
 
   const fetch = useCallback(async () => {
+    if (!supabase) { setLoading(false); return }
     setLoading(true)
-    const { data: rows } = await supabase
-      .from("experiences")
-      .select("*")
-      .order("created_at", { ascending: false })
-    setData(rows ?? [])
-    setLoading(false)
+    try {
+      const { data: rows } = await supabase
+        .from("experiences")
+        .select("*")
+        .order("created_at", { ascending: false })
+      setData(rows ?? [])
+    } catch (e) {
+      console.warn("[Portfolio] Failed to load experiences:", e)
+    } finally {
+      setLoading(false)
+    }
   }, [])
 
   useEffect(() => { fetch() }, [fetch])
 
   const add = async (item: Omit<Experience, "id" | "created_at">) => {
+    if (!supabase) return
     await supabase.from("experiences").insert(item)
     await fetch()
   }
 
   const update = async (id: string, item: Partial<Experience>) => {
+    if (!supabase) return
     await supabase.from("experiences").update(item).eq("id", id)
     await fetch()
   }
 
   const remove = async (id: string) => {
+    if (!supabase) return
     await supabase.from("experiences").delete().eq("id", id)
     await fetch()
   }

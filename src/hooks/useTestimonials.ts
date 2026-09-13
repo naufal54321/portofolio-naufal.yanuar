@@ -7,28 +7,37 @@ export function useTestimonials() {
   const [loading, setLoading] = useState(true)
 
   const fetch = useCallback(async () => {
+    if (!supabase) { setLoading(false); return }
     setLoading(true)
-    const { data: rows } = await supabase
-      .from("testimonials")
-      .select("*")
-      .order("created_at", { ascending: false })
-    setData(rows ?? [])
-    setLoading(false)
+    try {
+      const { data: rows } = await supabase
+        .from("testimonials")
+        .select("*")
+        .order("created_at", { ascending: false })
+      setData(rows ?? [])
+    } catch (e) {
+      console.warn("[Portfolio] Failed to load testimonials:", e)
+    } finally {
+      setLoading(false)
+    }
   }, [])
 
   useEffect(() => { fetch() }, [fetch])
 
   const add = async (item: Omit<Testimonial, "id" | "created_at">) => {
+    if (!supabase) return
     await supabase.from("testimonials").insert(item)
     await fetch()
   }
 
   const update = async (id: string, item: Partial<Testimonial>) => {
+    if (!supabase) return
     await supabase.from("testimonials").update(item).eq("id", id)
     await fetch()
   }
 
   const remove = async (id: string) => {
+    if (!supabase) return
     await supabase.from("testimonials").delete().eq("id", id)
     await fetch()
   }
