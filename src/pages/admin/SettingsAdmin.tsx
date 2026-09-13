@@ -50,6 +50,7 @@ export default function SettingsAdmin() {
   const [form, setForm] = useState<Record<string, string>>({})
   const [saving, setSaving] = useState(false)
   const [saved, setSaved] = useState(false)
+  const [error, setError] = useState("")
 
   useEffect(() => {
     setForm(data)
@@ -58,15 +59,21 @@ export default function SettingsAdmin() {
   const handleChange = (key: string, value: string) => {
     setForm((prev) => ({ ...prev, [key]: value }))
     setSaved(false)
+    setError("")
   }
 
   const handleSave = async () => {
     setSaving(true)
+    setError("")
     const items = Object.entries(form).map(([key, value]) => ({ key, value }))
-    await updateMany(items)
+    const result = await updateMany(items)
     setSaving(false)
-    setSaved(true)
-    setTimeout(() => setSaved(false), 2000)
+    if (result.error) {
+      setError(result.error)
+    } else {
+      setSaved(true)
+      setTimeout(() => setSaved(false), 2000)
+    }
   }
 
   return (
@@ -78,6 +85,12 @@ export default function SettingsAdmin() {
           {saving ? "Menyimpan..." : saved ? "Tersimpan!" : "Simpan Semua"}
         </button>
       </div>
+
+      {error && (
+        <p className="text-sm text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-900/30 px-4 py-3 rounded-xl mb-6">
+          Gagal menyimpan: {error}
+        </p>
+      )}
 
       {loading ? (
         <p className="text-slate-500">Loading...</p>

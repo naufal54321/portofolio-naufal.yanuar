@@ -13,10 +13,14 @@ export function useSettings() {
     if (!supabase) { setLoading(false); return }
     setLoading(true)
     try {
-      const { data: rows } = await supabase.from("settings").select("key, value")
-      const map: Settings = {}
-      rows?.forEach((r) => { map[r.key] = r.value })
-      setData(map)
+      const { data: rows, error } = await supabase.from("settings").select("key, value")
+      if (error) {
+        console.warn("[Portfolio] Failed to load settings:", error.message)
+      } else {
+        const map: Settings = {}
+        rows?.forEach((r) => { map[r.key] = r.value })
+        setData(map)
+      }
     } catch (e) {
       console.warn("[Portfolio] Failed to load settings:", e)
     } finally {
@@ -27,15 +31,25 @@ export function useSettings() {
   useEffect(() => { fetch() }, [fetch])
 
   const update = async (key: string, value: string) => {
-    if (!supabase) return
-    await supabase.from("settings").upsert({ key, value })
+    if (!supabase) return { error: "Supabase not configured" }
+    const { error } = await supabase.from("settings").upsert({ key, value })
+    if (error) {
+      console.warn("[Portfolio] Failed to update setting:", error.message)
+      return { error: error.message }
+    }
     await fetch()
+    return {}
   }
 
   const updateMany = async (items: { key: string; value: string }[]) => {
-    if (!supabase) return
-    await supabase.from("settings").upsert(items)
+    if (!supabase) return { error: "Supabase not configured" }
+    const { error } = await supabase.from("settings").upsert(items)
+    if (error) {
+      console.warn("[Portfolio] Failed to update settings:", error.message)
+      return { error: error.message }
+    }
     await fetch()
+    return {}
   }
 
   return { data, loading, update, updateMany, refetch: fetch }
