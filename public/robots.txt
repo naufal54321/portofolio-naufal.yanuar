@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://portofolio-naufal-yanuar.vercel.app/sitemap.xml
+Sitemap: https://naufal-yanuar.vercel.app/sitemap.xml

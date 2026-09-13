@@ -1,5 +1,14 @@
 -- Portfolio Database Schema for Supabase
--- Run this in Supabase SQL Editor
+-- Safe to re-run (uses IF NOT EXISTS and DROP IF EXISTS)
+
+-- Drop all existing policies first
+DO $$ DECLARE
+  r RECORD;
+BEGIN
+  FOR r IN (SELECT policyname, tablename FROM pg_policies WHERE schemaname = 'public') LOOP
+    EXECUTE format('DROP POLICY IF EXISTS %I ON %I', r.policyname, r.tablename);
+  END LOOP;
+END $$;
 
 -- Projects table
 CREATE TABLE IF NOT EXISTS projects (
@@ -50,7 +59,7 @@ CREATE TABLE IF NOT EXISTS settings (
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
 
--- Insert default settings
+-- Insert default settings (skip if already exists)
 INSERT INTO settings (key, value) VALUES
   ('hero_name', 'Muhammad Naufal Yanuar'),
   ('hero_title', 'Full Stack Web Developer'),
@@ -81,14 +90,14 @@ ALTER TABLE experiences ENABLE ROW LEVEL SECURITY;
 ALTER TABLE testimonials ENABLE ROW LEVEL SECURITY;
 ALTER TABLE settings ENABLE ROW LEVEL SECURITY;
 
--- Public read policies (anyone can read)
+-- Public read policies
 CREATE POLICY "Public read projects" ON projects FOR SELECT USING (true);
 CREATE POLICY "Public read skills" ON skills FOR SELECT USING (true);
 CREATE POLICY "Public read experiences" ON experiences FOR SELECT USING (true);
 CREATE POLICY "Public read testimonials" ON testimonials FOR SELECT USING (true);
 CREATE POLICY "Public read settings" ON settings FOR SELECT USING (true);
 
--- Authenticated write policies (only logged-in users can insert/update/delete)
+-- Authenticated write policies
 CREATE POLICY "Auth insert projects" ON projects FOR INSERT WITH CHECK (auth.role() = 'authenticated');
 CREATE POLICY "Auth update projects" ON projects FOR UPDATE USING (auth.role() = 'authenticated');
 CREATE POLICY "Auth delete projects" ON projects FOR DELETE USING (auth.role() = 'authenticated');
