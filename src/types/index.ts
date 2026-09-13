@@ -6,6 +6,9 @@ export interface Project {
   github: string
   demo: string
   tech: string[]
+  role: string
+  challenges: string
+  learnings: string
   created_at: string
 }
 
@@ -32,6 +35,17 @@ export interface Testimonial {
   role: string
   avatar: string
   text: string
+  created_at: string
+}
+
+export interface Post {
+  id: string
+  title: string
+  slug: string
+  excerpt: string
+  content: string
+  image: string
+  published: boolean
   created_at: string
 }
 

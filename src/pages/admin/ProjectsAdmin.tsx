@@ -10,6 +10,9 @@ const empty: Omit<Project, "id" | "created_at"> = {
   github: "",
   demo: "",
   tech: [],
+  role: "",
+  challenges: "",
+  learnings: "",
 }
 
 export default function ProjectsAdmin() {
@@ -20,7 +23,10 @@ export default function ProjectsAdmin() {
   const [techInput, setTechInput] = useState("")
 
   const openNew = () => { setForm(empty); setEditId(null); setShowForm(true); setTechInput("") }
-  const openEdit = (p: Project) => { setForm({ title: p.title, description: p.description, image: p.image, github: p.github, demo: p.demo, tech: p.tech }); setEditId(p.id); setShowForm(true); setTechInput(p.tech.join(", ")) }
+  const openEdit = (p: Project) => {
+    setForm({ title: p.title, description: p.description, image: p.image, github: p.github, demo: p.demo, tech: p.tech, role: p.role || "", challenges: p.challenges || "", learnings: p.learnings || "" })
+    setEditId(p.id); setShowForm(true); setTechInput(p.tech.join(", "))
+  }
 
   const handleSubmit = async () => {
     const techArray = techInput.split(",").map((t) => t.trim()).filter(Boolean)
@@ -49,11 +55,14 @@ export default function ProjectsAdmin() {
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <input placeholder="Judul" value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} className="px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-800 dark:text-white text-sm" />
+            <input placeholder="Role (mis: Full Stack Developer)" value={form.role} onChange={(e) => setForm({ ...form, role: e.target.value })} className="px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-800 dark:text-white text-sm" />
             <input placeholder="Image URL" value={form.image} onChange={(e) => setForm({ ...form, image: e.target.value })} className="px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-800 dark:text-white text-sm" />
             <input placeholder="GitHub URL" value={form.github} onChange={(e) => setForm({ ...form, github: e.target.value })} className="px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-800 dark:text-white text-sm" />
             <input placeholder="Demo URL" value={form.demo} onChange={(e) => setForm({ ...form, demo: e.target.value })} className="px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-800 dark:text-white text-sm" />
-            <input placeholder="Tech (koma: Laravel, React, MySQL)" value={techInput} onChange={(e) => setTechInput(e.target.value)} className="md:col-span-2 px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-800 dark:text-white text-sm" />
+            <input placeholder="Tech (koma: Laravel, React, MySQL)" value={techInput} onChange={(e) => setTechInput(e.target.value)} className="px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-800 dark:text-white text-sm" />
             <textarea placeholder="Deskripsi" value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} rows={3} className="md:col-span-2 px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-800 dark:text-white text-sm resize-none" />
+            <textarea placeholder="Tantangan yang dihadapi" value={form.challenges} onChange={(e) => setForm({ ...form, challenges: e.target.value })} rows={2} className="md:col-span-2 px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-800 dark:text-white text-sm resize-none" />
+            <textarea placeholder="Yang dipelajari" value={form.learnings} onChange={(e) => setForm({ ...form, learnings: e.target.value })} rows={2} className="md:col-span-2 px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-800 dark:text-white text-sm resize-none" />
           </div>
           <div className="flex gap-3 mt-4">
             <button onClick={handleSubmit} className="px-6 py-2 bg-primary text-white rounded-xl text-sm font-medium hover:bg-primary-dark transition-colors">Simpan</button>
@@ -77,7 +86,10 @@ export default function ProjectsAdmin() {
             <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
               {data.map((p) => (
                 <tr key={p.id} className="hover:bg-slate-50 dark:hover:bg-slate-700/30">
-                  <td className="px-6 py-4 text-slate-800 dark:text-white font-medium">{p.title}</td>
+                  <td className="px-6 py-4">
+                    <div className="text-slate-800 dark:text-white font-medium">{p.title}</div>
+                    {p.role && <div className="text-xs text-primary mt-0.5">{p.role}</div>}
+                  </td>
                   <td className="px-6 py-4 hidden md:table-cell">
                     <div className="flex flex-wrap gap-1">
                       {p.tech.slice(0, 3).map((t) => (

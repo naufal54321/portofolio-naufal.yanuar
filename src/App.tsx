@@ -3,10 +3,12 @@ import { AuthProvider, useAuth } from "./context/AuthContext"
 import Navbar from "./components/Navbar"
 import Hero from "./components/Hero"
 import About from "./components/About"
+import Education from "./components/Education"
 import Skills from "./components/Skills"
 import Projects from "./components/Projects"
 import Experience from "./components/Experience"
 import Testimonials from "./components/Testimonials"
+import Blog from "./components/Blog"
 import Contact from "./components/Contact"
 import Footer from "./components/Footer"
 import Login from "./pages/Login"
@@ -17,6 +19,7 @@ import SkillsAdmin from "./pages/admin/SkillsAdmin"
 import ExperienceAdmin from "./pages/admin/ExperienceAdmin"
 import TestimonialsAdmin from "./pages/admin/TestimonialsAdmin"
 import SettingsAdmin from "./pages/admin/SettingsAdmin"
+import BlogAdmin from "./pages/admin/BlogAdmin"
 import { useState, useEffect } from "react"
 
 function Portfolio() {
@@ -37,10 +40,12 @@ function Portfolio() {
       <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
       <Hero />
       <About />
+      <Education />
       <Skills />
       <Projects />
       <Experience />
       <Testimonials />
+      <Blog />
       <Contact />
       <Footer />
     </>
@@ -75,6 +80,7 @@ export default function App() {
             <Route path="experience" element={<ExperienceAdmin />} />
             <Route path="testimonials" element={<TestimonialsAdmin />} />
             <Route path="settings" element={<SettingsAdmin />} />
+            <Route path="blog" element={<BlogAdmin />} />
           </Route>
         </Routes>
       </BrowserRouter>

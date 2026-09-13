@@ -7,6 +7,7 @@ import {
   HiOutlineCollection,
   HiOutlineStar,
   HiOutlineCog,
+  HiOutlineDocumentText,
   HiOutlineLogout,
 } from "react-icons/hi"
 
@@ -16,6 +17,7 @@ const links = [
   { to: "/admin/skills", icon: HiOutlineChip, label: "Skills" },
   { to: "/admin/experience", icon: HiOutlineCollection, label: "Experience" },
   { to: "/admin/testimonials", icon: HiOutlineStar, label: "Testimoni" },
+  { to: "/admin/blog", icon: HiOutlineDocumentText, label: "Blog" },
   { to: "/admin/settings", icon: HiOutlineCog, label: "Settings" },
 ]
 

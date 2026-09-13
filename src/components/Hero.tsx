@@ -92,14 +92,17 @@ export default function Hero() {
               Lihat Project
               <HiArrowRight />
             </a>
-            <a
-              href="/cv.pdf"
-              download
-              className="inline-flex items-center gap-2 px-6 py-3 border-2 border-primary text-primary rounded-full font-medium hover:bg-primary hover:text-white transition-colors"
-            >
-              Download CV
-              <HiDownload />
-            </a>
+            {settings.cv_url && (
+              <a
+                href={settings.cv_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-3 border-2 border-primary text-primary rounded-full font-medium hover:bg-primary hover:text-white transition-colors"
+              >
+                Download CV
+                <HiDownload />
+              </a>
+            )}
             <TechStack />
           </motion.div>
         </motion.div>

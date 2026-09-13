@@ -19,6 +19,9 @@ CREATE TABLE IF NOT EXISTS projects (
   github TEXT NOT NULL DEFAULT '',
   demo TEXT NOT NULL DEFAULT '',
   tech TEXT[] NOT NULL DEFAULT '{}',
+  role TEXT NOT NULL DEFAULT '',
+  challenges TEXT NOT NULL DEFAULT '',
+  learnings TEXT NOT NULL DEFAULT '',
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
 
@@ -51,7 +54,19 @@ CREATE TABLE IF NOT EXISTS testimonials (
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
 
--- Settings table (key-value for hero, about, contact, stats)
+-- Posts (Blog) table
+CREATE TABLE IF NOT EXISTS posts (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  title TEXT NOT NULL,
+  slug TEXT NOT NULL UNIQUE,
+  excerpt TEXT NOT NULL DEFAULT '',
+  content TEXT NOT NULL DEFAULT '',
+  image TEXT NOT NULL DEFAULT '',
+  published BOOLEAN DEFAULT false,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Settings table (key-value for hero, about, contact, stats, education, cv)
 CREATE TABLE IF NOT EXISTS settings (
   id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
   key TEXT NOT NULL UNIQUE,
@@ -80,8 +95,27 @@ INSERT INTO settings (key, value) VALUES
   ('contact_linkedin', 'Muhammad Naufal Yanuar'),
   ('contact_linkedin_link', 'https://www.linkedin.com/in/muhammad-naufal-yanuar-069908373'),
   ('footer_name', 'Muhammad Naufal Yanuar'),
-  ('profile_image', '/images/profile.png')
+  ('profile_image', '/images/profile.png'),
+  ('cv_url', ''),
+  ('education_school', 'Universitas Islam Indonesia'),
+  ('education_major', 'Informatika'),
+  ('education_year', '2022 - Sekarang'),
+  ('education_detail', 'Fakultas Teknologi dan Sains')
 ON CONFLICT (key) DO NOTHING;
+
+-- Add new columns to existing projects table (safe to re-run)
+DO $$ BEGIN
+  ALTER TABLE projects ADD COLUMN IF NOT EXISTS role TEXT NOT NULL DEFAULT '';
+EXCEPTION WHEN duplicate_column THEN NULL;
+END $$;
+DO $$ BEGIN
+  ALTER TABLE projects ADD COLUMN IF NOT EXISTS challenges TEXT NOT NULL DEFAULT '';
+EXCEPTION WHEN duplicate_column THEN NULL;
+END $$;
+DO $$ BEGIN
+  ALTER TABLE projects ADD COLUMN IF NOT EXISTS learnings TEXT NOT NULL DEFAULT '';
+EXCEPTION WHEN duplicate_column THEN NULL;
+END $$;
 
 -- Enable Row Level Security
 ALTER TABLE projects ENABLE ROW LEVEL SECURITY;
@@ -89,6 +123,7 @@ ALTER TABLE skills ENABLE ROW LEVEL SECURITY;
 ALTER TABLE experiences ENABLE ROW LEVEL SECURITY;
 ALTER TABLE testimonials ENABLE ROW LEVEL SECURITY;
 ALTER TABLE settings ENABLE ROW LEVEL SECURITY;
+ALTER TABLE posts ENABLE ROW LEVEL SECURITY;
 
 -- Public read policies
 CREATE POLICY "Public read projects" ON projects FOR SELECT USING (true);
@@ -96,6 +131,7 @@ CREATE POLICY "Public read skills" ON skills FOR SELECT USING (true);
 CREATE POLICY "Public read experiences" ON experiences FOR SELECT USING (true);
 CREATE POLICY "Public read testimonials" ON testimonials FOR SELECT USING (true);
 CREATE POLICY "Public read settings" ON settings FOR SELECT USING (true);
+CREATE POLICY "Public read posts" ON posts FOR SELECT USING (published = true);
 
 -- Authenticated write policies
 CREATE POLICY "Auth insert projects" ON projects FOR INSERT WITH CHECK (auth.role() = 'authenticated');
@@ -117,3 +153,7 @@ CREATE POLICY "Auth delete testimonials" ON testimonials FOR DELETE USING (auth.
 CREATE POLICY "Auth insert settings" ON settings FOR INSERT WITH CHECK (auth.role() = 'authenticated');
 CREATE POLICY "Auth update settings" ON settings FOR UPDATE USING (auth.role() = 'authenticated');
 CREATE POLICY "Auth delete settings" ON settings FOR DELETE USING (auth.role() = 'authenticated');
+
+CREATE POLICY "Auth insert posts" ON posts FOR INSERT WITH CHECK (auth.role() = 'authenticated');
+CREATE POLICY "Auth update posts" ON posts FOR UPDATE USING (auth.role() = 'authenticated');
+CREATE POLICY "Auth delete posts" ON posts FOR DELETE USING (auth.role() = 'authenticated');

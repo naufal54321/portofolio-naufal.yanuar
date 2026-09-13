@@ -10,6 +10,16 @@ const sections = [
       { key: "hero_title", label: "Title", placeholder: "Full Stack Web Developer" },
       { key: "hero_description", label: "Deskripsi", placeholder: "Deskripsi singkat..." },
       { key: "profile_image", label: "Foto Profil URL", placeholder: "/images/profile.png" },
+      { key: "cv_url", label: "CV URL (kosongkan untuk sembunyikan tombol)", placeholder: "https://drive.google.com/..." },
+    ],
+  },
+  {
+    title: "Education",
+    fields: [
+      { key: "education_school", label: "Universitas", placeholder: "Universitas Islam Indonesia" },
+      { key: "education_major", label: "Jurusan", placeholder: "Informatika" },
+      { key: "education_year", label: "Tahun", placeholder: "2022 - Sekarang" },
+      { key: "education_detail", label: "Detail", placeholder: "Fakultas Teknologi dan Sains" },
     ],
   },
   {

@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { HiChevronLeft, HiChevronRight } from "react-icons/hi"
+import { HiChevronLeft, HiChevronRight, HiOutlineChatAlt2 } from "react-icons/hi"
 import { useTestimonials } from "../hooks/useTestimonials"
 
 export default function Testimonials() {
@@ -8,7 +8,26 @@ export default function Testimonials() {
   const [active, setActive] = useState(0)
 
   if (loading) return null
-  if (testimonials.length === 0) return null
+
+  if (testimonials.length === 0) {
+    return (
+      <section className="py-20 bg-slate-50 dark:bg-slate-900">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 text-center">
+          <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-16">
+            <h2 className="text-3xl sm:text-4xl font-bold text-slate-800 dark:text-white mb-4">Testimoni</h2>
+            <div className="w-20 h-1 bg-primary mx-auto rounded-full" />
+          </motion.div>
+          <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="py-16">
+            <HiOutlineChatAlt2 className="text-5xl text-slate-300 dark:text-slate-600 mx-auto mb-4" />
+            <p className="text-slate-500 dark:text-slate-400 mb-4">Belum ada testimoni yang ditambahkan.</p>
+            <a href="/admin/testimonials" className="text-sm font-medium text-primary hover:text-primary-dark transition-colors">
+              Tambah Testimoni →
+            </a>
+          </motion.div>
+        </div>
+      </section>
+    )
+  }
 
   const prev = () => setActive((a) => (a === 0 ? testimonials.length - 1 : a - 1))
   const next = () => setActive((a) => (a === testimonials.length - 1 ? 0 : a + 1))
@@ -43,7 +62,7 @@ export default function Testimonials() {
                 className="w-16 h-16 rounded-full mx-auto mb-4"
               />
               <p className="text-slate-600 dark:text-slate-300 leading-relaxed mb-6 italic">
-                "{testimonials[active].text}"
+                &ldquo;{testimonials[active].text}&rdquo;
               </p>
               <h4 className="font-semibold text-slate-800 dark:text-white">
                 {testimonials[active].name}

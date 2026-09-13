@@ -1,11 +1,14 @@
 import { useState, useMemo } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { HiExternalLink, HiCode } from "react-icons/hi"
+import { HiExternalLink, HiCode, HiOutlineFolder } from "react-icons/hi"
 import { useProjects } from "../hooks/useProjects"
+import ProjectDetailModal from "./ProjectDetailModal"
+import type { Project } from "../types"
 
 export default function Projects() {
   const { data: projects, loading } = useProjects()
   const [activeTag, setActiveTag] = useState("Semua")
+  const [selected, setSelected] = useState<Project | null>(null)
 
   const allTags = useMemo(() => {
     return [...new Set(projects.flatMap((p) => p.tech))].sort()
@@ -20,7 +23,26 @@ export default function Projects() {
   )
 
   if (loading) return null
-  if (projects.length === 0) return null
+
+  if (projects.length === 0) {
+    return (
+      <section id="projects" className="py-20 scroll-mt-16 bg-white dark:bg-slate-800">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 text-center">
+          <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-16">
+            <h2 className="text-3xl sm:text-4xl font-bold text-slate-800 dark:text-white mb-4">Projects</h2>
+            <div className="w-20 h-1 bg-primary mx-auto rounded-full" />
+          </motion.div>
+          <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="py-16">
+            <HiOutlineFolder className="text-5xl text-slate-300 dark:text-slate-600 mx-auto mb-4" />
+            <p className="text-slate-500 dark:text-slate-400 mb-4">Belum ada project yang ditambahkan.</p>
+            <a href="/admin/projects" className="text-sm font-medium text-primary hover:text-primary-dark transition-colors">
+              Tambah Project →
+            </a>
+          </motion.div>
+        </div>
+      </section>
+    )
+  }
 
   return (
     <section id="projects" className="py-20 scroll-mt-16 bg-white dark:bg-slate-800">
@@ -63,7 +85,8 @@ export default function Projects() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ delay: i * 0.05, duration: 0.3 }}
-                className="group bg-slate-50 dark:bg-slate-700/50 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-600 hover:-translate-y-2 hover:shadow-xl hover:shadow-primary/10 transition-all duration-300"
+                onClick={() => setSelected(project)}
+                className="group cursor-pointer bg-slate-50 dark:bg-slate-700/50 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-600 hover:-translate-y-2 hover:shadow-xl hover:shadow-primary/10 transition-all duration-300"
               >
                 <div className="relative overflow-hidden h-48">
                   <img
@@ -74,31 +97,28 @@ export default function Projects() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4 gap-3">
                     {project.github && (
-                      <a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="p-2 bg-white/90 rounded-full text-slate-800 hover:bg-white transition-colors"
-                      >
+                      <span className="p-2 bg-white/90 rounded-full text-slate-800 hover:bg-white transition-colors">
                         <HiCode size={20} />
-                      </a>
+                      </span>
                     )}
                     {project.demo && (
-                      <a
-                        href={project.demo}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="p-2 bg-white/90 rounded-full text-slate-800 hover:bg-white transition-colors"
-                      >
+                      <span className="p-2 bg-white/90 rounded-full text-slate-800 hover:bg-white transition-colors">
                         <HiExternalLink size={20} />
-                      </a>
+                      </span>
                     )}
                   </div>
                 </div>
                 <div className="p-5">
-                  <h3 className="text-lg font-semibold text-slate-800 dark:text-white mb-2">
-                    {project.title}
-                  </h3>
+                  <div className="flex items-center gap-2 mb-2">
+                    <h3 className="text-lg font-semibold text-slate-800 dark:text-white">
+                      {project.title}
+                    </h3>
+                    {project.role && (
+                      <span className="px-2 py-0.5 text-[10px] font-medium bg-primary/10 text-primary rounded-full">
+                        {project.role}
+                      </span>
+                    )}
+                  </div>
                   <p className="text-sm text-slate-500 dark:text-slate-400 mb-4 line-clamp-2">
                     {project.description}
                   </p>
@@ -118,6 +138,10 @@ export default function Projects() {
           </AnimatePresence>
         </div>
       </div>
+
+      {selected && (
+        <ProjectDetailModal project={selected} onClose={() => setSelected(null)} />
+      )}
     </section>
   )
 }

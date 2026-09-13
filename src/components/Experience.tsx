@@ -1,11 +1,31 @@
 import { motion } from "framer-motion"
+import { HiOutlineBriefcase } from "react-icons/hi"
 import { useExperiences } from "../hooks/useExperiences"
 
 export default function Experience() {
   const { data: experiences, loading } = useExperiences()
 
   if (loading) return null
-  if (experiences.length === 0) return null
+
+  if (experiences.length === 0) {
+    return (
+      <section id="experience" className="py-20 scroll-mt-16 bg-slate-50 dark:bg-slate-900">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 text-center">
+          <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-16">
+            <h2 className="text-3xl sm:text-4xl font-bold text-slate-800 dark:text-white mb-4">Experience</h2>
+            <div className="w-20 h-1 bg-primary mx-auto rounded-full" />
+          </motion.div>
+          <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="py-16">
+            <HiOutlineBriefcase className="text-5xl text-slate-300 dark:text-slate-600 mx-auto mb-4" />
+            <p className="text-slate-500 dark:text-slate-400 mb-4">Belum ada pengalaman yang ditambahkan.</p>
+            <a href="/admin/experience" className="text-sm font-medium text-primary hover:text-primary-dark transition-colors">
+              Tambah Experience →
+            </a>
+          </motion.div>
+        </div>
+      </section>
+    )
+  }
 
   return (
     <section id="experience" className="py-20 scroll-mt-16 bg-slate-50 dark:bg-slate-900">
