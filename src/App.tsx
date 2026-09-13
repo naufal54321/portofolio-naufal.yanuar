@@ -17,7 +17,7 @@ import SkillsAdmin from "./pages/admin/SkillsAdmin"
 import ExperienceAdmin from "./pages/admin/ExperienceAdmin"
 import TestimonialsAdmin from "./pages/admin/TestimonialsAdmin"
 import SettingsAdmin from "./pages/admin/SettingsAdmin"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 function Portfolio() {
   const [darkMode, setDarkMode] = useState<boolean>(() => {
@@ -26,6 +26,11 @@ function Portfolio() {
   })
 
   const toggleDarkMode = () => setDarkMode((prev) => !prev)
+
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", darkMode)
+    localStorage.setItem("darkMode", JSON.stringify(darkMode))
+  }, [darkMode])
 
   return (
     <>
