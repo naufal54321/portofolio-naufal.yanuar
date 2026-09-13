@@ -19,10 +19,7 @@ export default function Testimonials() {
           </motion.div>
           <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="py-16">
             <HiOutlineChatAlt2 className="text-5xl text-slate-300 dark:text-slate-600 mx-auto mb-4" />
-            <p className="text-slate-500 dark:text-slate-400 mb-4">Belum ada testimoni yang ditambahkan.</p>
-            <a href="/admin/testimonials" className="text-sm font-medium text-primary hover:text-primary-dark transition-colors">
-              Tambah Testimoni →
-            </a>
+            <p className="text-slate-500 dark:text-slate-400">Belum ada testimoni yang ditambahkan.</p>
           </motion.div>
         </div>
       </section>

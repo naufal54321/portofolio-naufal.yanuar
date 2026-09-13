@@ -34,10 +34,7 @@ export default function Projects() {
           </motion.div>
           <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="py-16">
             <HiOutlineFolder className="text-5xl text-slate-300 dark:text-slate-600 mx-auto mb-4" />
-            <p className="text-slate-500 dark:text-slate-400 mb-4">Belum ada project yang ditambahkan.</p>
-            <a href="/admin/projects" className="text-sm font-medium text-primary hover:text-primary-dark transition-colors">
-              Tambah Project →
-            </a>
+            <p className="text-slate-500 dark:text-slate-400">Belum ada project yang ditambahkan.</p>
           </motion.div>
         </div>
       </section>

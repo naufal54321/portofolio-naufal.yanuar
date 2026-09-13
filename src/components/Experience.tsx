@@ -17,10 +17,7 @@ export default function Experience() {
           </motion.div>
           <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="py-16">
             <HiOutlineBriefcase className="text-5xl text-slate-300 dark:text-slate-600 mx-auto mb-4" />
-            <p className="text-slate-500 dark:text-slate-400 mb-4">Belum ada pengalaman yang ditambahkan.</p>
-            <a href="/admin/experience" className="text-sm font-medium text-primary hover:text-primary-dark transition-colors">
-              Tambah Experience →
-            </a>
+            <p className="text-slate-500 dark:text-slate-400">Belum ada pengalaman yang ditambahkan.</p>
           </motion.div>
         </div>
       </section>
