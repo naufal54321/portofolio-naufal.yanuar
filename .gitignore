@@ -10,6 +10,7 @@ lerna-debug.log*
 # Environment
 .env
 .env.local
+.env.development
 .env.*.local
 
 node_modules
@@ -29,4 +30,3 @@ dist-ssr
 *.sw?
 
 .vercel
-.env*
