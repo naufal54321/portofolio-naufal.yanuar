@@ -29,12 +29,13 @@ export default function BlogAdmin() {
 
   const handleSave = async () => {
     if (!form.title.trim()) { setError("Judul wajib diisi"); return }
-    if (!form.slug.trim()) { setError("Slug wajib diisi"); return }
+    const slug = slugify(form.title)
+    if (!slug) { setError("Slug tidak valid"); return }
     setSaving(true)
     setError("")
     const result = editing === "new"
-      ? await add({ ...form, slug: slugify(form.title) })
-      : await update(editing!, { ...form, slug: slugify(form.title) })
+      ? await add({ ...form, slug })
+      : await update(editing!, { ...form, slug })
     setSaving(false)
     if (result.error) {
       setError(result.error)
