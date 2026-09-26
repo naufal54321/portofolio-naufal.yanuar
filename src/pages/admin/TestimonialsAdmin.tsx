@@ -38,10 +38,10 @@ export default function TestimonialsAdmin() {
             {editId ? "Edit Testimoni" : "Tambah Testimoni"}
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <input placeholder="Nama" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className="px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-800 dark:text-white text-sm" />
-            <input placeholder="Role (misal: Klien, Dosen)" value={form.role} onChange={(e) => setForm({ ...form, role: e.target.value })} className="px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-800 dark:text-white text-sm" />
-            <input placeholder="Avatar URL" value={form.avatar} onChange={(e) => setForm({ ...form, avatar: e.target.value })} className="px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-800 dark:text-white text-sm" />
-            <textarea placeholder="Teks testimoni" value={form.text} onChange={(e) => setForm({ ...form, text: e.target.value })} rows={2} className="px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-800 dark:text-white text-sm resize-none" />
+            <input placeholder="Nama" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className="px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-800 dark:text-white text-base" />
+            <input placeholder="Role (misal: Klien, Dosen)" value={form.role} onChange={(e) => setForm({ ...form, role: e.target.value })} className="px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-800 dark:text-white text-base" />
+            <input placeholder="Avatar URL" value={form.avatar} onChange={(e) => setForm({ ...form, avatar: e.target.value })} className="px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-800 dark:text-white text-base" />
+            <textarea placeholder="Teks testimoni" value={form.text} onChange={(e) => setForm({ ...form, text: e.target.value })} rows={2} className="px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-800 dark:text-white text-base resize-none" />
           </div>
           <div className="flex gap-3 mt-4">
             <button onClick={handleSubmit} className="px-6 py-2 bg-primary text-white rounded-xl text-sm font-medium hover:bg-primary-dark transition-colors">Simpan</button>
@@ -53,8 +53,8 @@ export default function TestimonialsAdmin() {
       {loading ? (
         <p className="text-slate-500">Loading...</p>
       ) : (
-        <div className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 overflow-hidden">
-          <table className="w-full text-sm">
+        <div className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 overflow-x-auto">
+          <table className="w-full min-w-[480px] text-sm">
             <thead className="bg-slate-50 dark:bg-slate-700/50">
               <tr>
                 <th className="text-left px-6 py-3 font-medium text-slate-600 dark:text-slate-300">Nama</th>

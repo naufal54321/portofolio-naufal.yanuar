@@ -42,7 +42,7 @@ export default function Navbar({ darkMode, toggleDarkMode }: NavbarProps) {
             Portfolio
           </a>
 
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-6">
             {navLinks.map((link) => (
               <a
                 key={link.name}
@@ -61,7 +61,7 @@ export default function Navbar({ darkMode, toggleDarkMode }: NavbarProps) {
             </button>
           </div>
 
-          <div className="md:hidden flex items-center gap-2">
+          <div className="lg:hidden flex items-center gap-2">
             <button
               onClick={toggleDarkMode}
               className="p-2 rounded-full bg-slate-100 dark:bg-slate-700 transition-colors"
@@ -86,15 +86,15 @@ export default function Navbar({ darkMode, toggleDarkMode }: NavbarProps) {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="md:hidden bg-white dark:bg-slate-800 border-t border-slate-200 dark:border-slate-700"
+            className="lg:hidden bg-white dark:bg-slate-800 border-t border-slate-200 dark:border-slate-700"
           >
-            <div className="px-4 py-4 space-y-3">
+            <div className="px-4 py-4 space-y-1">
               {navLinks.map((link) => (
                 <a
                   key={link.name}
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
-                  className="block text-sm font-medium text-slate-600 hover:text-primary dark:text-slate-300 dark:hover:text-primary transition-colors"
+                  className="block py-2 text-sm font-medium text-slate-600 hover:text-primary dark:text-slate-300 dark:hover:text-primary transition-colors"
                 >
                   {link.name}
                 </a>

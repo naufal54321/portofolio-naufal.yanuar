@@ -38,15 +38,15 @@ export default function SkillsAdmin() {
             {editId ? "Edit Skill" : "Tambah Skill"}
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <input placeholder="Nama skill" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className="px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-800 dark:text-white text-sm" />
-            <select value={form.category} onChange={(e) => setForm({ ...form, category: e.target.value })} className="px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-800 dark:text-white text-sm">
+            <input placeholder="Nama skill" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className="px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-800 dark:text-white text-base" />
+            <select value={form.category} onChange={(e) => setForm({ ...form, category: e.target.value })} className="px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-800 dark:text-white text-base">
               <option>Frontend</option>
               <option>Backend</option>
               <option>Database</option>
               <option>Tools</option>
             </select>
             <div>
-              <input type="number" min={0} max={100} placeholder="Level" value={form.level} onChange={(e) => setForm({ ...form, level: Number(e.target.value) })} className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-800 dark:text-white text-sm" />
+              <input type="number" min={0} max={100} placeholder="Level" value={form.level} onChange={(e) => setForm({ ...form, level: Number(e.target.value) })} className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-800 dark:text-white text-base" />
               <div className="mt-1 text-xs text-slate-400">{form.level}%</div>
             </div>
           </div>
@@ -60,8 +60,8 @@ export default function SkillsAdmin() {
       {loading ? (
         <p className="text-slate-500">Loading...</p>
       ) : (
-        <div className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 overflow-hidden">
-          <table className="w-full text-sm">
+        <div className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 overflow-x-auto">
+          <table className="w-full min-w-[480px] text-sm">
             <thead className="bg-slate-50 dark:bg-slate-700/50">
               <tr>
                 <th className="text-left px-6 py-3 font-medium text-slate-600 dark:text-slate-300">Nama</th>

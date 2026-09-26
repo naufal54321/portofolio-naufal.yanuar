@@ -34,15 +34,15 @@ export default function TechStack() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ delay: 1.1 }}
-      className="flex flex-wrap items-center justify-center md:justify-start gap-5 mt-6"
+      className="grid grid-cols-4 gap-x-6 gap-y-5 mt-8 max-w-md mx-auto md:mx-0"
     >
       {techIcons.map((tech) => (
         <div
           key={tech.name}
-          className="group relative"
+          className="flex flex-col items-center gap-2"
         >
-          <tech.icon className={`text-2xl ${tech.color} hover:scale-125 transition-transform duration-200`} />
-          <span className="absolute -top-8 left-1/2 -translate-x-1/2 text-xs bg-slate-800 dark:bg-slate-200 text-white dark:text-slate-800 px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+          <tech.icon className={`text-3xl ${tech.color} hover:scale-110 transition-transform duration-200`} />
+          <span className="text-[11px] text-slate-500 dark:text-slate-400 text-center leading-tight">
             {tech.name}
           </span>
         </div>

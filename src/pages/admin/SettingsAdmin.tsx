@@ -123,14 +123,14 @@ export default function SettingsAdmin() {
                         onChange={(e) => handleChange(field.key, e.target.value)}
                         rows={2}
                         placeholder={field.placeholder}
-                        className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-800 dark:text-white text-sm resize-none focus:outline-none focus:ring-2 focus:ring-primary transition-colors"
+                        className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-800 dark:text-white text-base resize-none focus:outline-none focus:ring-2 focus:ring-primary transition-colors"
                       />
                     ) : (
                       <input
                         value={form[field.key] || ""}
                         onChange={(e) => handleChange(field.key, e.target.value)}
                         placeholder={field.placeholder}
-                        className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-800 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-primary transition-colors"
+                        className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-800 dark:text-white text-base focus:outline-none focus:ring-2 focus:ring-primary transition-colors"
                       />
                     )}
                   </div>
