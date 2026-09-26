@@ -83,7 +83,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.9 }}
-            className="flex flex-wrap gap-4 justify-center md:justify-start"
+            className="flex flex-wrap gap-4 justify-center md:justify-start items-center"
           >
             <a
               href="#projects"
@@ -103,8 +103,8 @@ export default function Hero() {
                 <HiDownload />
               </a>
             )}
-            <TechStack />
           </motion.div>
+          <TechStack />
         </motion.div>
 
         <motion.div
