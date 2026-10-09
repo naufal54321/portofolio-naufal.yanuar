@@ -126,10 +126,10 @@ export default function BlogAdmin() {
                 <p className="text-sm text-slate-500 dark:text-slate-400 truncate">{post.excerpt || "No excerpt"}</p>
               </div>
               <div className="flex gap-2 ml-4">
-                <button onClick={() => startEdit(post.id)} className="p-2 text-slate-400 hover:text-primary hover:bg-primary/10 rounded-lg transition-colors">
+                <button onClick={() => startEdit(post.id)} className="p-2.5 text-slate-400 hover:text-primary hover:bg-primary/10 rounded-lg transition-colors">
                   <HiPencil size={18} />
                 </button>
-                <button onClick={() => handleDelete(post.id)} className="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/30 rounded-lg transition-colors">
+                <button onClick={() => handleDelete(post.id)} className="p-2.5 text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/30 rounded-lg transition-colors">
                   <HiTrash size={18} />
                 </button>
               </div>

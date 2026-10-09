@@ -66,12 +66,15 @@ export default function ExperienceAdmin() {
             <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
               {data.map((e) => (
                 <tr key={e.id} className="hover:bg-slate-50 dark:hover:bg-slate-700/30">
-                  <td className="px-6 py-4 text-slate-800 dark:text-white font-medium">{e.title}</td>
+                  <td className="px-6 py-4 text-slate-800 dark:text-white font-medium">
+                    {e.title}
+                    <span className="block md:hidden text-xs font-normal text-slate-500 dark:text-slate-400">{e.period}</span>
+                  </td>
                   <td className="px-6 py-4 text-slate-500 dark:text-slate-400">{e.company}</td>
                   <td className="px-6 py-4 hidden md:table-cell text-slate-500 dark:text-slate-400">{e.period}</td>
                   <td className="px-6 py-4 text-right">
-                    <button onClick={() => openEdit(e)} className="p-1.5 text-slate-500 hover:text-primary transition-colors"><HiPencil /></button>
-                    <button onClick={() => handleDelete(e.id)} className="p-1.5 text-slate-500 hover:text-red-600 transition-colors ml-1"><HiTrash /></button>
+                    <button onClick={() => openEdit(e)} className="p-2.5 text-slate-500 hover:text-primary transition-colors"><HiPencil /></button>
+                    <button onClick={() => handleDelete(e.id)} className="p-2.5 text-slate-500 hover:text-red-600 transition-colors ml-1"><HiTrash /></button>
                   </td>
                 </tr>
               ))}

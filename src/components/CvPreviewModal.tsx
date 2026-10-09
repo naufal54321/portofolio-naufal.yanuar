@@ -58,12 +58,12 @@ export default function CvPreviewModal({ open, cvUrl, name, onClose }: Props) {
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            className="relative w-full max-w-5xl h-[90vh] flex flex-col bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-2xl"
+            className="relative w-full max-w-5xl h-[90vh] max-h-[90dvh] flex flex-col bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-2xl"
           >
             <div className="flex items-center justify-between gap-3 px-5 py-4 border-b border-slate-200 dark:border-slate-700">
               <div className="flex items-center gap-2 min-w-0">
                 <HiDocumentText className="text-primary shrink-0" size={20} />
-                <span className="font-semibold text-slate-800 dark:text-white truncate">
+                <span className="font-semibold text-slate-800 dark:text-white truncate hidden sm:inline">
                   CV — {name}
                 </span>
               </div>
@@ -74,7 +74,7 @@ export default function CvPreviewModal({ open, cvUrl, name, onClose }: Props) {
                     download
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-full text-sm font-medium hover:bg-primary-dark transition-colors"
+                    className="inline-flex items-center gap-2 px-4 py-3 bg-primary text-white rounded-full text-sm font-medium hover:bg-primary-dark transition-colors"
                   >
                     Unduh CV
                     <HiDownload size={16} />
@@ -83,7 +83,7 @@ export default function CvPreviewModal({ open, cvUrl, name, onClose }: Props) {
                 <button
                   onClick={onClose}
                   aria-label="Tutup"
-                  className="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
+                  className="p-2.5 rounded-full hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
                 >
                   <HiX size={20} className="text-slate-600 dark:text-slate-300" />
                 </button>

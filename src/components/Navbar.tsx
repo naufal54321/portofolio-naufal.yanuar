@@ -64,7 +64,7 @@ export default function Navbar({ darkMode, toggleDarkMode }: NavbarProps) {
           <div className="lg:hidden flex items-center gap-2">
             <button
               onClick={toggleDarkMode}
-              className="p-2 rounded-full bg-slate-100 dark:bg-slate-700 transition-colors"
+              className="p-2.5 rounded-full bg-slate-100 dark:bg-slate-700 transition-colors"
               aria-label="Toggle dark mode"
             >
               {darkMode ? <FiSun className="text-yellow-400" /> : <FiMoon className="text-slate-600" />}
@@ -94,7 +94,7 @@ export default function Navbar({ darkMode, toggleDarkMode }: NavbarProps) {
                   key={link.name}
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
-                  className="block py-2 text-sm font-medium text-slate-600 hover:text-primary dark:text-slate-300 dark:hover:text-primary transition-colors"
+                  className="block py-2.5 text-sm font-medium text-slate-600 hover:text-primary dark:text-slate-300 dark:hover:text-primary transition-colors"
                 >
                   {link.name}
                 </a>

@@ -84,8 +84,8 @@ export default function SkillsAdmin() {
                     </div>
                   </td>
                   <td className="px-6 py-4 text-right">
-                    <button onClick={() => openEdit(s)} className="p-1.5 text-slate-500 hover:text-primary transition-colors"><HiPencil /></button>
-                    <button onClick={() => handleDelete(s.id)} className="p-1.5 text-slate-500 hover:text-red-600 transition-colors ml-1"><HiTrash /></button>
+                    <button onClick={() => openEdit(s)} className="p-2.5 text-slate-500 hover:text-primary transition-colors"><HiPencil /></button>
+                    <button onClick={() => handleDelete(s.id)} className="p-2.5 text-slate-500 hover:text-red-600 transition-colors ml-1"><HiTrash /></button>
                   </td>
                 </tr>
               ))}

@@ -61,7 +61,7 @@ export default function Blog() {
                   <>
                     <button
                       onClick={() => setExpanded(expanded === post.id ? null : post.id)}
-                      className="text-sm font-medium text-primary hover:text-primary-dark transition-colors inline-flex items-center gap-1"
+                      className="text-sm font-medium text-primary hover:text-primary-dark transition-colors inline-flex items-center gap-1 py-2.5"
                     >
                       {expanded === post.id ? "Tutup" : "Baca Selengkapnya"}
                       {expanded === post.id ? <HiOutlineChevronUp size={16} /> : <HiOutlineChevronDown size={16} />}
@@ -74,7 +74,7 @@ export default function Blog() {
                           exit={{ opacity: 0, height: 0 }}
                           className="overflow-hidden"
                         >
-                          <div className="pt-4 mt-4 border-t border-slate-200 dark:border-slate-600 text-slate-600 dark:text-slate-300 leading-relaxed whitespace-pre-line text-sm">
+                          <div className="pt-4 mt-4 border-t border-slate-200 dark:border-slate-600 text-slate-600 dark:text-slate-300 leading-relaxed whitespace-pre-line text-base">
                             {post.content}
                           </div>
                         </motion.div>

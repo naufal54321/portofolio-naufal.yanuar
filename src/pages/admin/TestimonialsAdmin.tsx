@@ -70,8 +70,8 @@ export default function TestimonialsAdmin() {
                   <td className="px-6 py-4 text-slate-500 dark:text-slate-400">{t.role}</td>
                   <td className="px-6 py-4 hidden md:table-cell text-slate-500 dark:text-slate-400 line-clamp-1 max-w-xs">{t.text}</td>
                   <td className="px-6 py-4 text-right">
-                    <button onClick={() => openEdit(t)} className="p-1.5 text-slate-500 hover:text-primary transition-colors"><HiPencil /></button>
-                    <button onClick={() => handleDelete(t.id)} className="p-1.5 text-slate-500 hover:text-red-600 transition-colors ml-1"><HiTrash /></button>
+                    <button onClick={() => openEdit(t)} className="p-2.5 text-slate-500 hover:text-primary transition-colors"><HiPencil /></button>
+                    <button onClick={() => handleDelete(t.id)} className="p-2.5 text-slate-500 hover:text-red-600 transition-colors ml-1"><HiTrash /></button>
                   </td>
                 </tr>
               ))}

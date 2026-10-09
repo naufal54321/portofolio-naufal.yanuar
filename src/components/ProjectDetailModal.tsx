@@ -109,7 +109,7 @@ export default function ProjectDetailModal({ project, onClose }: Props) {
               </div>
             )}
 
-            <div className="flex gap-3 pt-2">
+            <div className="flex flex-wrap gap-3 pt-2">
               {project.github && (
                 <a
                   href={project.github}

@@ -73,7 +73,7 @@ export default function Testimonials() {
           <div className="flex justify-center gap-4 mt-8">
             <button
               onClick={prev}
-              className="p-2 rounded-full bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-600 transition-colors"
+              className="p-3 rounded-full bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-600 transition-colors"
               aria-label="Previous"
             >
               <HiChevronLeft size={20} />
@@ -83,7 +83,7 @@ export default function Testimonials() {
                 <button
                   key={i}
                   onClick={() => setActive(i)}
-                  className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                  className={`relative after:content-[''] after:absolute after:-inset-3.5 w-2.5 h-2.5 rounded-full transition-all duration-300 ${
                     i === active
                       ? "bg-primary w-6"
                       : "bg-slate-300 dark:bg-slate-600"
@@ -94,7 +94,7 @@ export default function Testimonials() {
             </div>
             <button
               onClick={next}
-              className="p-2 rounded-full bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-600 transition-colors"
+              className="p-3 rounded-full bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-600 transition-colors"
               aria-label="Next"
             >
               <HiChevronRight size={20} />

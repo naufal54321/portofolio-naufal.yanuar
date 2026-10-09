@@ -69,7 +69,7 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
-            className="text-xl text-slate-600 dark:text-slate-300 mb-2 h-8"
+            className="text-xl text-slate-600 dark:text-slate-300 mb-2 min-h-8"
           >
             {text}
             <span className="animate-pulse">|</span>
