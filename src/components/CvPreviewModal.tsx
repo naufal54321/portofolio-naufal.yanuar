@@ -57,7 +57,7 @@ export default function CvPreviewModal({ open, cvUrl, name, onClose }: Props) {
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            className="relative w-full max-w-3xl max-h-[90vh] flex flex-col bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-2xl"
+            className="relative w-full max-w-5xl h-[90vh] flex flex-col bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-2xl"
           >
             <div className="flex items-center justify-between gap-3 px-5 py-4 border-b border-slate-200 dark:border-slate-700">
               <div className="flex items-center gap-2 min-w-0">
