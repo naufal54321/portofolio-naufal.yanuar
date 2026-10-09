@@ -10,7 +10,7 @@ const sections = [
       { key: "hero_title", label: "Title", placeholder: "Full Stack Web Developer" },
       { key: "hero_description", label: "Deskripsi", placeholder: "Deskripsi singkat..." },
       { key: "profile_image", label: "Foto Profil URL", placeholder: "/images/profile.png" },
-      { key: "cv_url", label: "CV URL (kosongkan untuk sembunyikan tombol)", placeholder: "https://drive.google.com/..." },
+      { key: "cv_url", label: "CV URL (PDF; kosongkan untuk pakai cv.pdf bawaan. Google Drive: pakai link /preview agar bisa di-embed)", placeholder: "https://drive.google.com/file/d/.../preview" },
     ],
   },
   {

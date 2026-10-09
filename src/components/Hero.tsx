@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
-import { HiArrowRight, HiDownload } from "react-icons/hi"
+import { HiArrowRight, HiDocumentText } from "react-icons/hi"
 import TechStack from "./TechStack"
+import CvPreviewModal from "./CvPreviewModal"
 import { useSettings } from "../hooks/useSettings"
 
 export default function Hero() {
@@ -9,6 +10,8 @@ export default function Hero() {
   const [text, setText] = useState("")
   const fullText = settings.hero_title || "Full Stack Web Developer"
   const [index, setIndex] = useState(0)
+  const [showCv, setShowCv] = useState(false)
+  const cvUrl = settings.cv_url || "/cv.pdf"
 
   useEffect(() => {
     if (index < fullText.length) {
@@ -92,17 +95,14 @@ export default function Hero() {
               Lihat Project
               <HiArrowRight />
             </a>
-            {settings.cv_url && (
-              <a
-                href={settings.cv_url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 border-2 border-primary text-primary rounded-full font-medium hover:bg-primary hover:text-white transition-colors"
-              >
-                Download CV
-                <HiDownload />
-              </a>
-            )}
+            <button
+              type="button"
+              onClick={() => setShowCv(true)}
+              className="inline-flex items-center gap-2 px-6 py-3 border-2 border-primary text-primary rounded-full font-medium hover:bg-primary hover:text-white transition-colors"
+            >
+              Lihat CV
+              <HiDocumentText />
+            </button>
           </motion.div>
           <TechStack />
         </motion.div>
@@ -143,6 +143,13 @@ export default function Hero() {
           </div>
         </motion.div>
       </div>
+
+      <CvPreviewModal
+        open={showCv}
+        cvUrl={cvUrl}
+        name={settings.hero_name || "Muhammad Naufal Yanuar"}
+        onClose={() => setShowCv(false)}
+      />
     </section>
   )
 }
