@@ -1,12 +1,26 @@
 import { useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { HiX, HiDownload, HiDocumentText } from "react-icons/hi"
+import { HiX, HiDownload, HiDocumentText, HiOutlineExclamationCircle } from "react-icons/hi"
 
 interface Props {
   open: boolean
   cvUrl: string
   name: string
   onClose: () => void
+}
+
+function normalizeCvUrl(url: string) {
+  const folder = url.match(/drive\.google\.com\/drive\/folders\/([\w-]+)/)
+  if (folder) return { embeddable: false, preview: url, download: url }
+  const file = url.match(/drive\.google\.com\/file\/d\/([\w-]+)/)
+  if (file) {
+    return {
+      embeddable: true,
+      preview: `https://drive.google.com/file/d/${file[1]}/preview`,
+      download: `https://drive.google.com/uc?export=download&id=${file[1]}`,
+    }
+  }
+  return { embeddable: true, preview: url, download: url }
 }
 
 export default function CvPreviewModal({ open, cvUrl, name, onClose }: Props) {
@@ -22,6 +36,8 @@ export default function CvPreviewModal({ open, cvUrl, name, onClose }: Props) {
       document.body.style.overflow = ""
     }
   }, [open, onClose])
+
+  const cv = normalizeCvUrl(cvUrl)
 
   return (
     <AnimatePresence>
@@ -51,16 +67,18 @@ export default function CvPreviewModal({ open, cvUrl, name, onClose }: Props) {
                 </span>
               </div>
               <div className="flex items-center gap-2 shrink-0">
-                <a
-                  href={cvUrl}
-                  download
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-full text-sm font-medium hover:bg-primary-dark transition-colors"
-                >
-                  Unduh CV
-                  <HiDownload size={16} />
-                </a>
+                {cv.embeddable && (
+                  <a
+                    href={cv.download}
+                    download
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-full text-sm font-medium hover:bg-primary-dark transition-colors"
+                  >
+                    Unduh CV
+                    <HiDownload size={16} />
+                  </a>
+                )}
                 <button
                   onClick={onClose}
                   aria-label="Tutup"
@@ -71,7 +89,29 @@ export default function CvPreviewModal({ open, cvUrl, name, onClose }: Props) {
               </div>
             </div>
 
-            <iframe src={cvUrl} title="Preview CV" className="w-full flex-1 min-h-0 bg-slate-100 dark:bg-slate-900" />
+            {cv.embeddable ? (
+              <iframe src={cv.preview} title="Preview CV" className="w-full flex-1 min-h-0 bg-slate-100 dark:bg-slate-900" />
+            ) : (
+              <div className="flex-1 min-h-0 overflow-y-auto flex flex-col items-center justify-center p-8 text-center bg-slate-50 dark:bg-slate-900">
+                <HiOutlineExclamationCircle className="text-5xl text-amber-500 mb-4" />
+                <p className="text-slate-700 dark:text-slate-300 font-medium mb-2">
+                  Preview tidak tersedia untuk tautan folder Google Drive.
+                </p>
+                <p className="text-sm text-slate-500 dark:text-slate-400 mb-6 max-w-sm">
+                  Buka CV langsung di Google Drive, atau tempel link <strong>file PDF</strong> (bukan
+                  folder) di Admin Settings → CV URL agar bisa di-preview di sini.
+                </p>
+                <a
+                  href={cvUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-white rounded-full font-medium hover:bg-primary-dark transition-colors"
+                >
+                  Buka di Google Drive
+                  <HiDownload size={16} />
+                </a>
+              </div>
+            )}
 
             <div className="px-5 py-3 border-t border-slate-200 dark:border-slate-700 text-center">
               <a
