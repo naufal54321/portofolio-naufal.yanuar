@@ -10,6 +10,7 @@ interface Props {
 }
 
 function normalizeCvUrl(url: string) {
+  if (!url) return { embeddable: false, preview: "", download: "" }
   const folder = url.match(/drive\.google\.com\/drive\/folders\/([\w-]+)/)
   if (folder) return { embeddable: false, preview: url, download: url }
   const file = url.match(/drive\.google\.com\/file\/d\/([\w-]+)/)
